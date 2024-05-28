@@ -26,10 +26,24 @@ Route::get('/', function () {
 // single listing.
 
 Route::get('/listings/{id}', function($id){
-    return view('listing', [
-        'listing' => Listing::find($id)
-    ]);
+    $listing = Listing::find($id);
+
+    if($listing){
+        return view('listing', [
+            'listing' => $listing
+        ]);
+    }else{
+        abort('404');
+    }
+
 });
+
+// Route::get('/listings/{listing}', function(Listing $listing){   // this is very clean using 
+//     return view('listing', [
+//         'listing' => $listing
+//     ]);
+// });
+
 
 // Route::get('/hello', function (){
 //     return response('<h2>Hello Maduka-Pcm</h2>');
