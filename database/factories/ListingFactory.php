@@ -16,9 +16,13 @@ class ListingFactory extends Factory
      */
     public function definition()
     {
+
+        $allTags = ['laravel', 'api', 'backend', 'frontend', 'devops', 'database', 'testing', 'php', 'javascript'];
+        $randomTags = $this->faker->randomElements($allTags, 3); // Select exactly 3 random tags
+
         return [
             'title' => $this->faker->sentence(),
-            'tags' => 'laravel, api, backend',
+            'tags' => implode(', ', $randomTags),
             'location' => $this->faker->city(),
             'company' => $this->faker->company(),
             'email' => $this->faker->companyEmail(),
